@@ -85,7 +85,6 @@ public class DatabaseUtilities
 		if (value instanceof String) {
 			return "'" + value + "'"; 
 		}
-		
 		return value.toString();
 	}
 }

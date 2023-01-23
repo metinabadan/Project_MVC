@@ -1,14 +1,14 @@
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Meeting {
     private int apartmentNumber;
     private int meetingID;
-    private Date meetingDate;
+    private String meetingDate;
 
-    public Meeting(int apartmentNumber, Date meetingDate) {
+    public Meeting(int apartmentNumber, String meetingDate) {
         this.apartmentNumber = apartmentNumber;
-        this.meetingDate = meetingDate;
+        this.meetingDate = meetingDate; 
     }
 
     public Object getByName(String attributeName) {
@@ -28,11 +28,11 @@ public class Meeting {
         this.apartmentNumber = apartmentNumber;
     }
 
-    public Date getMeetingDate() {
+    public String getMeetingDate() {
         return meetingDate;
     }
 
-    public void setMeetingDate(Date meetingDate) {
+    public void setMeetingDate(java.sql.Date String) {
         this.meetingDate = meetingDate;
     }
 

@@ -1,10 +1,11 @@
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Date;
 public class MeetingView implements ViewInterface{
     
     @Override
@@ -67,7 +68,7 @@ public class MeetingView implements ViewInterface{
         //BURDA DATE TYPECAST VAR SIKINTI CIKABILIR        
         Integer apartmentNumber = getInteger("Apartment Number : ", true);
         Integer meetingID = getInteger("Subscription ID : ", true);
-        java.sql.Date meetingDate = (java.sql.Date) getDate("Start Date : ", true);
+        java.sql.Date meetingDate = (java.sql.Date)getDate("Start Date : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (apartmentNumber != null) {
@@ -91,21 +92,24 @@ public class MeetingView implements ViewInterface{
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "ApartmentNumber, MeetingDate");
 
         List<Object> rows = new ArrayList<>();
 
-        String name, groupName;
+        Integer apartmentNumber;
+        String meetingDate;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            apartmentNumber = getInteger("ApartmentNumber : ", true);
+            if(apartmentNumber == null)
+            	break;
+            meetingDate = new SimpleDateFormat("yyyy-MM-dd").format(getDate("Date : ", true));
             System.out.println();
 
-            if (name != null && groupName != null) {
-                rows.add(new Meeting(name, groupName));
+            if (apartmentNumber != null && meetingDate != null) {
+                rows.add(new Meeting(apartmentNumber, meetingDate));
             }
-        } while (name != null && groupName != null);
+        } while (apartmentNumber != null && meetingDate != null);
 
         parameters.put("rows", rows);
 

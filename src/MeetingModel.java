@@ -61,7 +61,7 @@ public class MeetingModel implements ModelInterface{
                 }
             }
         }
-        //System.out.println(sql.toString());
+        System.out.println(sql.toString());
 
         // execute constructed SQL statement
         if (rowCount > 0) {
