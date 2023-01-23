@@ -103,7 +103,7 @@ public class MeetingView implements ViewInterface{
             System.out.println();
 
             if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+                rows.add(new Meeting(name, groupName));
             }
         } while (name != null && groupName != null);
 

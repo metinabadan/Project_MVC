@@ -112,7 +112,7 @@ class ApartmentView implements ViewInterface {
 		
 		parameters.put("rows", rows);
 		
-		return new ViewData("Department", "insert", parameters);
+		return new ViewData("Apartment", "insert", parameters);
 	}
 
 	ViewData updateGUI(ModelData modelData) throws Exception {
