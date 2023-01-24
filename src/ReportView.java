@@ -36,9 +36,9 @@ public class ReportView implements ViewInterface{
 ;
 
                 // Display values
-                System.out.print(apartmentNumber + "\t");
-                System.out.print(reportID + "\t");
-                System.out.print(typeID);
+                System.out.print("ApartmentNumber : " + apartmentNumber + "\t");
+                System.out.print("ReportID : " + reportID + "\t");
+                System.out.println("TypeID : " + typeID);
             }
             resultSet.close();
         }
@@ -94,19 +94,19 @@ public class ReportView implements ViewInterface{
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "ApartmentNumber, TypeID");
 
         List<Object> rows = new ArrayList<>();
 
-        String name, groupName;
+        Integer name, groupName;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            name = getInteger("ApartmentNumber : ", true);
+            groupName = getInteger("TypeID : ", true);
             System.out.println();
 
             if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+                rows.add(new Report(name, groupName));
             }
         } while (name != null && groupName != null);
 
@@ -117,16 +117,16 @@ public class ReportView implements ViewInterface{
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+        Integer name = getInteger("ApartmentNumber : ", true);
+        Integer groupName = getInteger("TypeID : ", true);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
         if (name != null) {
-            updateParameters.put("Name", name);
+            updateParameters.put("ApartmentNumber", name);
         }
         if (groupName != null) {
-            updateParameters.put("GroupName", groupName);
+            updateParameters.put("TypeID", groupName);
         }
 
         Map<String, Object> parameters = new HashMap<>();

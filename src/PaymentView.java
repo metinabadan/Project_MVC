@@ -1,6 +1,7 @@
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,21 +35,22 @@ public class PaymentView implements ViewInterface{
                 int ssn = resultSet.getInt("SSN");
                 int roleID = resultSet.getInt("RoleID");
                 int amount = resultSet.getInt("Amount");
-                java.sql.Date date = resultSet.getDate("Date");
+                Date date = resultSet.getDate("Date");
                 int type = resultSet.getInt("Type");
                 String description = resultSet.getString("Description");
                 String paymentID = resultSet.getString("PaymentID");
                 String receipt = resultSet.getString("Receipt");
                 // Display values
-                System.out.print(apartmentNumber + "\t");
-                System.out.print(ssn + "\t");
-                System.out.print(roleID + "\t");
-                System.out.println(amount + "\t");
-                System.out.println(date + "\t");
-                System.out.println(type + "\t");
-                System.out.println(description + "\t");
-                System.out.println(paymentID + "\t");
-                System.out.println(receipt);
+                System.out.print("ApartmentNumber : " +apartmentNumber + "\t");
+                System.out.print("SSN : " +ssn + "\t");
+                System.out.print("RoleID : " +roleID + "\t");
+                System.out.print("Amount : " +amount + "\t");
+                System.out.print("Date : " +date + "\t");
+                System.out.print("Type : " +type + "\t");
+                System.out.print("Description : " +description + "\t");
+                System.out.print("PaymentID : " +paymentID + "\t");
+                System.out.print("Receipt : " +receipt);
+                System.out.println("");
             }
             resultSet.close();
         }
@@ -76,11 +78,11 @@ public class PaymentView implements ViewInterface{
 
     Map<String, Object> getWhereParameters() throws Exception {
         //BURDA DATE TYPECAST VAR SIKINTI CIKABILIR        
-        Integer apartmentNumber = getInteger("Apartment Number : ", true);
+        Integer apartmentNumber = getInteger("ApartmentNumber : ", true);
         Integer ssn = getInteger("SSN : ", true);
         Integer roleID = getInteger("RoleID : ", true);
         Integer amount = getInteger("Amount : ", true);
-        java.sql.Date date = (java.sql.Date) getDate("Date  : ", true);
+        String date = getString("Date  : ", true);
         Integer type = getInteger("Type  : ", true);
         String description =  getString("Description : ", true);
         String paymentID = getString("PaymentID  : ", true);
@@ -127,21 +129,28 @@ public class PaymentView implements ViewInterface{
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "ApartmentNumber, SSN, RoleID, Amount, Date, Type, Description, Receipt");
 
         List<Object> rows = new ArrayList<>();
-
-        String name, groupName;
+        Integer a,b,c,d;
+        String f,e,g,h;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            a = getInteger("ApartmentNumber : ", true);
+            b = getInteger("SSN : ", true);
+            c = getInteger("RoleID : ", true);
+            d = getInteger("Amount : ", true);
+            e = getString("Date : ", true);
+            f = getString("Type : ", true);
+            g = getString("Description : ", true);
+            h = getString("Receipt : ", true);
+            
             System.out.println();
 
-            if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+            if (a != null && b != null && c != null && d != null && e != null && g != null && h != null) {
+                rows.add(new Payment(a, b, c, d, e,f ,g, h));
             }
-        } while (name != null && groupName != null);
+        } while (a != null && b != null && c != null && d != null && e != null && g != null && h != null);
 
         parameters.put("rows", rows);
 
@@ -150,17 +159,43 @@ public class PaymentView implements ViewInterface{
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+        Integer a = getInteger("ApartmentNumber : ", true);
+        Integer b = getInteger("SSN : ", true);
+        Integer c = getInteger("RoleID : ", true);
+        Integer d = getInteger("Amount : ", true);
+        String e = getString("Date : ", true);
+        String f = getString("Type : ", true);
+        String g = getString("Description : ", true);
+        String h = getString("Receipt : ", true);
+        
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) {
-            updateParameters.put("Name", name);
+        if (a != null) {
+            updateParameters.put("ApartmentNumber", a);
         }
-        if (groupName != null) {
-            updateParameters.put("GroupName", groupName);
+        if (b != null) {
+            updateParameters.put("SSN", b);
         }
+        if (c != null) {
+            updateParameters.put("RoleID", c);
+        }
+        if (d != null) {
+            updateParameters.put("Amount", d);
+        }
+        if (e != null) {
+            updateParameters.put("Date", e);
+        }
+        if (f != null) {
+            updateParameters.put("Type", f);
+        }
+        if (g != null) {
+            updateParameters.put("Description", g);
+        }
+        if (h != null) {
+            updateParameters.put("Receipt", h);
+        }
+        
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);

@@ -5,10 +5,10 @@ public class Expense {
     private int apartmentNumber;
     private int expenseID;
     private String description;
-    private Date date;
+    private String date;
     private int amount;
 
-    public Expense(int apartmentNumber, String description, Date date, int amount) {
+    public Expense(int apartmentNumber, String description, String date, int amount) {
         this.apartmentNumber = apartmentNumber;
         this.description = description;
         this.date = date;
@@ -35,11 +35,11 @@ public class Expense {
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

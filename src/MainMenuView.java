@@ -11,15 +11,14 @@ class MainMenuView implements ViewInterface {
 		{
 			System.out.println("0. Apartment Table");
 			System.out.println("1. Decision Table");
-			System.out.println("2. Department Table");
-			System.out.println("3. Due Table");
-			System.out.println("4. Expense Table");
-			System.out.println("5. Meeting Table");
-			System.out.println("6. Payment Table");
-			System.out.println("7. Person Table");
-			System.out.println("8. Report Table");
-			System.out.println("9. Subscription Table");
-			System.out.println("10. Vote Table");
+			System.out.println("2. Due Table");
+			System.out.println("3. Expense Table");
+			System.out.println("4. Meeting Table");
+			System.out.println("5. Payment Table");
+			System.out.println("6. Person Table");
+			System.out.println("7. Report Table");
+			System.out.println("8. Subscription Table");
+			System.out.println("9. Vote Table");
 			System.out.println("-1. Quit");
 			System.out.println();
 
@@ -34,15 +33,14 @@ class MainMenuView implements ViewInterface {
 		{
 			case 0: tableName = "Apartment"; break;
 			case 1: tableName = "Decision";	break;
-			case 2: tableName = "Department";	break;
-			case 3: tableName = "Due";	break;
-			case 4: tableName = "Expense";	break;
-			case 5: tableName = "Meeting";	break;
-			case 6: tableName = "Payment";	break;
-			case 7: tableName = "Person";	break;
-			case 8: tableName = "Report";	break;
-			case 9: tableName = "Subscription";	break;
-			case 10: tableName = "Vote";	break;
+			case 2: tableName = "Due";	break;
+			case 3: tableName = "Expense";	break;
+			case 4: tableName = "Meeting";	break;
+			case 5: tableName = "Payment";	break;
+			case 6: tableName = "Person";	break;
+			case 7: tableName = "Report";	break;
+			case 8: tableName = "Subscription";	break;
+			case 9: tableName = "Vote";	break;
 			default: return new ViewData(null, null);
 		}
 		

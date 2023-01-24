@@ -39,12 +39,13 @@ public class PersonView implements ViewInterface{
                 int flatNumber = resultSet.getInt("FlatNumber");
 
                 // Display values
-                System.out.print(ssn + "\t");
-                System.out.print(name + "\t");
-                System.out.print(email + "\t");
-                System.out.println(phone + "\t");
-                System.out.println(roleID + "\t");
-                System.out.println(flatNumber);
+                System.out.print("SSN : " +ssn + "\t");
+                System.out.print("Name : " +name + "\t");
+                System.out.print("Email : " +email + "\t");
+                System.out.print("Phone : " +phone + "\t");
+                System.out.print("RoleID : " +roleID + "\t");
+                System.out.print("FlatNumber : " +flatNumber);
+                System.out.println("");
             }
             resultSet.close();
         }
@@ -72,12 +73,12 @@ public class PersonView implements ViewInterface{
 
     Map<String, Object> getWhereParameters() throws Exception {
         //BURDA BIGINT YOK SIKINTI CIKABILIR        
-        Integer ssn = getInteger("Apartment Number : ", true);
-        String name = getString("Subscription ID : ", true);
-        String email = getString("Start Date : ", true);
-        String phone = getString("End Date : ", true);
-        Integer roleID = getInteger("Amount  : ", true);
-        Integer flatNumber = getInteger("TypeID  : ", true);
+        Integer ssn = getInteger("SSN : ", true);
+        String name = getString("Name : ", true);
+        String email = getString("Email : ", true);
+        String phone = getString("Phone : ", true);
+        Integer roleID = getInteger("RoleID  : ", true);
+        Integer flatNumber = getInteger("FlatNumber  : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (ssn != null) {
@@ -111,21 +112,25 @@ public class PersonView implements ViewInterface{
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "Name, Email, Phone, RoleID, FlatNumber");
 
         List<Object> rows = new ArrayList<>();
-
-        String name, groupName;
+        Integer e, f;
+        String b, c, d;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            b = getString("Name : ", true);
+            c = getString("Email : ", true);
+            d = getString("Phone : ", true);
+            e = getInteger("RoleID : ", true);
+            f = getInteger("FlatNumber : ", true);
+            
             System.out.println();
 
-            if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+            if (b != null && c != null && d != null && e != null && f != null) {
+                rows.add(new Person( b, c, d, e, f));
             }
-        } while (name != null && groupName != null);
+        } while ( b != null && c != null && d != null && e != null && f != null);
 
         parameters.put("rows", rows);
 
@@ -134,17 +139,31 @@ public class PersonView implements ViewInterface{
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+        String a = getString("Name : ", true);
+        String b = getString("Email : ", true);
+        String c = getString("Phone : ", true);
+        Integer d = getInteger("RoleID : ", true);
+        Integer e = getInteger("FlatNumber : ", true);
+        
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) {
-            updateParameters.put("Name", name);
+        if (a != null) {
+            updateParameters.put("Name", b);
         }
-        if (groupName != null) {
-            updateParameters.put("GroupName", groupName);
+        if (b != null) {
+            updateParameters.put("Email", b);
         }
+        if (c != null) {
+            updateParameters.put("Phone", c);
+        }
+        if (d != null) {
+            updateParameters.put("RoleID", d);
+        }
+        if (e != null) {
+            updateParameters.put("FlatNumber", e);
+        }
+        
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);

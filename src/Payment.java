@@ -7,12 +7,12 @@ public class Payment {
     private int ssn;
     private int roleID;
     private int amount;
-    private Date date;
+    private String date;
     private String type;
     private String description;
     private String receipt;
 
-    public Payment(int apartmentNumber, int ssn, int roleID, int amount, Date date, String type, String description, String receipt) {
+    public Payment(int apartmentNumber, int ssn, int roleID, int amount, String date, String type, String description, String receipt) {
         this.apartmentNumber = apartmentNumber;
         this.ssn = ssn;
         this.roleID = roleID;
@@ -74,11 +74,11 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

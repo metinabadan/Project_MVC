@@ -1,11 +1,11 @@
 
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
+
 public class MeetingView implements ViewInterface{
     
     @Override
@@ -32,13 +32,13 @@ public class MeetingView implements ViewInterface{
             while (resultSet.next()) {
                 // Retrieve by column name
                 int apartmentNumber = resultSet.getInt("ApartmentNumber");
-                int meetingID = resultSet.getInt("SubscriptionID");
-                java.sql.Date meetingDate = resultSet.getDate("MeetingDate");
+                int meetingID = resultSet.getInt("MeetingID");
+                Date meetingDate = resultSet.getDate("MeetingDate");
                 
                 // Display values
-                System.out.print(apartmentNumber + "\t");
-                System.out.print(meetingID + "\t");
-                System.out.print(meetingDate);
+                System.out.print("ApartmentNumber : " + apartmentNumber + "\t");
+                System.out.print("MeetingID : " + meetingID + "\t");
+                System.out.println("MeetingDate : " +meetingDate); 
             }
             resultSet.close();
         }
@@ -66,9 +66,9 @@ public class MeetingView implements ViewInterface{
 
     Map<String, Object> getWhereParameters() throws Exception {
         //BURDA DATE TYPECAST VAR SIKINTI CIKABILIR        
-        Integer apartmentNumber = getInteger("Apartment Number : ", true);
-        Integer meetingID = getInteger("Subscription ID : ", true);
-        java.sql.Date meetingDate = (java.sql.Date)getDate("Start Date : ", true);
+        Integer apartmentNumber = getInteger("ApartmentNumber : ", true);
+        Integer meetingID = getInteger("MeetingID : ", true);
+        Date meetingDate = (java.sql.Date) getDate("MeetingDate : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
         if (apartmentNumber != null) {
@@ -95,21 +95,18 @@ public class MeetingView implements ViewInterface{
         parameters.put("fieldNames", "ApartmentNumber, MeetingDate");
 
         List<Object> rows = new ArrayList<>();
-
-        Integer apartmentNumber;
-        String meetingDate;
+        Integer a,b;
+        String c;
         do {
             System.out.println("Fields to insert:");
-            apartmentNumber = getInteger("ApartmentNumber : ", true);
-            if(apartmentNumber == null)
-            	break;
-            meetingDate = new SimpleDateFormat("yyyy-MM-dd").format(getDate("Date : ", true));
+            a = getInteger("ApartmentNumber : ", true);
+            c = getString("MeetingDate : ", true);
             System.out.println();
 
-            if (apartmentNumber != null && meetingDate != null) {
-                rows.add(new Meeting(apartmentNumber, meetingDate));
+            if (a != null && c != null) {
+                rows.add(new Meeting(a, c));
             }
-        } while (apartmentNumber != null && meetingDate != null);
+        } while (a != null && c != null);
 
         parameters.put("rows", rows);
 
@@ -118,16 +115,20 @@ public class MeetingView implements ViewInterface{
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+        String a = getString("ApartmentNumber : ", true);
+        String b = getString("MeetingID : ", true);
+        String c = getString("MeetingDate : ", true);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) {
-            updateParameters.put("Name", name);
+        if (a != null) {
+            updateParameters.put("ApartmentNumber", a);
         }
-        if (groupName != null) {
-            updateParameters.put("GroupName", groupName);
+        if (b != null) {
+            updateParameters.put("MeetingID", b);
+        }
+        if (c != null) {
+            updateParameters.put("MeetingDate", c);
         }
 
         Map<String, Object> parameters = new HashMap<>();

@@ -2,7 +2,7 @@
 import java.math.BigInteger;
 
 public class Person{
-    private BigInteger ssn;
+    private Integer ssn;
     private String name;
     private String email;
     private String phone;
@@ -29,7 +29,7 @@ public class Person{
         this.flatNumber = flatNumber;
     }
     
-    public BigInteger getSsn() {
+    public Integer getSsn() {
         return ssn;
     }
 

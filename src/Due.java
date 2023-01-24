@@ -1,14 +1,14 @@
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Due {
     
     private int apartmentNumber;
     private int dueID;
     private int amount;
-    private Date date;
+    private String date;
 
-    public Due(int apartmentNumber, int amount, Date date) {
+    public Due(int apartmentNumber, int amount, String date) {
         this.apartmentNumber = apartmentNumber;
         this.amount = amount;
         this.date = date;
@@ -40,11 +40,11 @@ public class Due {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

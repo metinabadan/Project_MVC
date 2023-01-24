@@ -8,7 +8,7 @@ public class Meeting {
 
     public Meeting(int apartmentNumber, String meetingDate) {
         this.apartmentNumber = apartmentNumber;
-        this.meetingDate = meetingDate; 
+        this.meetingDate = meetingDate;
     }
 
     public Object getByName(String attributeName) {
@@ -32,7 +32,7 @@ public class Meeting {
         return meetingDate;
     }
 
-    public void setMeetingDate(java.sql.Date String) {
+    public void setMeetingDate(String meetingDate) {
         this.meetingDate = meetingDate;
     }
 

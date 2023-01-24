@@ -41,9 +41,9 @@ class ApartmentView implements ViewInterface {
 				String address = resultSet.getString("Address");
 				
 				// Display values
-				System.out.print(ApartmentNumber + "\t");
-				System.out.print(name + "\t");
-				System.out.print(address + "\t");
+				System.out.print("Apartment Number: " + ApartmentNumber + "\t");
+				System.out.print("Name: " + name + "\t\t");
+				System.out.println("Adress: " + address + "\t");
 			}
 			resultSet.close();	
 		}

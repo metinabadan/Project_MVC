@@ -9,7 +9,7 @@ public class ApartmentModel implements ModelInterface
 		// construct SQL statement
 		StringBuilder sql = new StringBuilder();
 		sql.append(" SELECT ");
-		sql.append("	ApartmentNumber, Name, Address  ");
+		sql.append("	ApartmentNumber, Name, Address ");
 		sql.append(" FROM Apartment ");
 
 		List<Map.Entry<String, Object>> whereParameterList = DatabaseUtilities.createWhereParameterList(whereParameters);		

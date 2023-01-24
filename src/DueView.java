@@ -1,9 +1,11 @@
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 public class DueView implements ViewInterface{
 
@@ -32,14 +34,14 @@ public class DueView implements ViewInterface{
                 // Retrieve by column name
                 int apartmentNumber = resultSet.getInt("ApartmentNumber");
                 int dueID = resultSet.getInt("DueID");
-                java.sql.Date date = resultSet.getDate("Date");
+                Date date = resultSet.getDate("Date");
                 int amount = resultSet.getInt("Amount");
 
                 // Display values
-                System.out.print(apartmentNumber + "\t");
-                System.out.print(dueID + "\t");
-                System.out.println(amount + "\t");
-                System.out.print(date);
+                System.out.print("Apartment Number: " + apartmentNumber + "\t");
+                System.out.print("DueID: " + dueID + "\t");
+                System.out.print("Amount: " + amount + "\t");
+                System.out.println("Date: " + date);
             }
             resultSet.close();
         }
@@ -69,7 +71,7 @@ public class DueView implements ViewInterface{
         //BURDA DATE TYPECAST VAR SIKINTI CIKABILIR        
         Integer apartmentNumber = getInteger("Apartment Number : ", true);
         Integer subscriptionID = getInteger("Due ID : ", true);
-        java.sql.Date date = (java.sql.Date) getDate("Date : ", true);
+        Date date = getDate("Date : ", true);
         Integer amount = getInteger("Amount  : ", true);
 
         Map<String, Object> whereParameters = new HashMap<>();
@@ -99,21 +101,23 @@ public class DueView implements ViewInterface{
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "ApartmentNumber, Date, Amount");
 
         List<Object> rows = new ArrayList<>();
 
-        String name, groupName;
+        Integer a,b,d;
+        String c;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            a = getInteger("ApartmentNumber : ", true);
+            c = getString("Date : ", true);
+            d = getInteger("Amount : ", true);
             System.out.println();
 
-            if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+            if (a != null && c != null && d != null) {
+                rows.add(new Due(a, d, c));
             }
-        } while (name != null && groupName != null);
+        } while (a != null && c != null && d != null);
 
         parameters.put("rows", rows);
 
@@ -122,18 +126,23 @@ public class DueView implements ViewInterface{
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+        Integer a = getInteger("ApartmentNumber : ", true);
+        String c = getString("Date : ", true);
+        Integer d = getInteger("Amount : ", true);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) {
-            updateParameters.put("Name", name);
+        if (a != null) {
+            updateParameters.put("ApartmentNumber", a);
         }
-        if (groupName != null) {
-            updateParameters.put("GroupName", groupName);
+        if (c != null) {
+            updateParameters.put("Date", c);
         }
-
+        if (d != null) {
+            updateParameters.put("Amount", d);
+        }
+        
+        
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("updateParameters", updateParameters);
         parameters.put("whereParameters", getWhereParameters());

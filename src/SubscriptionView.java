@@ -38,12 +38,13 @@ public class SubscriptionView implements ViewInterface {
                 int typeID = resultSet.getInt("TypeID");
 
                 // Display values
-                System.out.print(apartmentNumber + "\t");
-                System.out.print(subscriptionID + "\t");
-                System.out.print(startDate + "\t");
-                System.out.println(endDate + "\t");
-                System.out.println(amount + "\t");
-                System.out.println(typeID);
+                System.out.print("ApartmentNumber : " +apartmentNumber + "\t");
+                System.out.print("SubscriptionID : " +subscriptionID + "\t");
+                System.out.print("StartDate : " +startDate + "\t");
+                System.out.print("EndDate : " +endDate + "\t");
+                System.out.print("Amount : " +amount + "\t");
+                System.out.print("TypeID : " +typeID);
+                System.out.println(""); 
             }
             resultSet.close();
         }
@@ -108,23 +109,27 @@ public class SubscriptionView implements ViewInterface {
         return new ViewData("Subscription", "select", parameters);
     }
 
-    ViewData insertGUI(ModelData modelData) throws Exception {
+    ViewData insertGUI(ModelData modelData) throws Exception 
+    {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "ApartmentNumber, StartDate, EndDate, Amount, TypeID ");
 
         List<Object> rows = new ArrayList<>();
-
-        String name, groupName;
+        Integer a,d,e;
+        String b,c;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            a = getInteger("ApartmentNumber : ", true);
+            b = getString("StartDate : ", true);
+            c = getString("EndDate : ", true);
+            d = getInteger("Amount : ", true);
+            e = getInteger("TypeID : ", true);
             System.out.println();
 
-            if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+            if (a != null && b != null && c != null && d != null && e != null) {
+                rows.add(new Subscription(a, b, c , d, e));
             }
-        } while (name != null && groupName != null);
+        } while (a != null && b != null && c != null && d != null && e != null);
 
         parameters.put("rows", rows);
 

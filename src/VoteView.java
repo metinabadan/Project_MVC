@@ -39,13 +39,14 @@ public class VoteView implements ViewInterface{
                 int roleID = resultSet.getInt("RoleID");
 
                 // Display values
-                System.out.print(apartmentNumber + "\t");
-                System.out.print(voteID + "\t");
-                System.out.print(ssn + "\t");
-                System.out.println(meetingID + "\t");
-                System.out.println(decisionID + "\t");
-                System.out.println(vote + "\t");
-                System.out.println(roleID);
+                System.out.print("ApartmentNumber : " +apartmentNumber + "\t");
+                System.out.print("VoteID : " +voteID + "\t");
+                System.out.print("SSN : " +ssn + "\t");
+                System.out.print("MeetingID : " +meetingID + "\t");
+                System.out.print("DecisionID : " +decisionID + "\t");
+                System.out.print("Vote : " +vote + "\t");
+                System.out.print("RoleID : " +roleID);
+                System.out.println("");
             }
             resultSet.close();
         }
@@ -116,21 +117,26 @@ public class VoteView implements ViewInterface{
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "ApartmentNumber, SSN, MeetingID, DecisionID, Vote, RoleID");
 
         List<Object> rows = new ArrayList<>();
 
-        String name, groupName;
+        Integer a, b, c, d,f;
+        String e;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            a = getInteger("ApartmentNumber : ", true);
+            b = getInteger("SSN : ", true);
+            c = getInteger("MeetingID : ", true);
+            d = getInteger("DecisionID : ", true);
+            e = getString("Vote : ", true);
+            f = getInteger("RoleID : ", true);
             System.out.println();
 
-            if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+            if (a != null && b != null && c != null && d != null && e != null && f != null) {
+                rows.add(new Vote(a, b, c, d, e ,f));
             }
-        } while (name != null && groupName != null);
+        } while (a != null && b != null && c != null && d != null && e != null && f != null);
 
         parameters.put("rows", rows);
 
@@ -139,16 +145,33 @@ public class VoteView implements ViewInterface{
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+        Integer a = getInteger("ApartmentNumber : ", true);
+        Integer b = getInteger("SSN : ", true);
+        Integer c = getInteger("MeetingID : ", true);
+        Integer d = getInteger("DecisionID : ", true);
+        String e = getString("Vote : ", true);
+        Integer f = getInteger("RoleID : ", true);
+        
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) {
-            updateParameters.put("Name", name);
+        if (a != null) {
+            updateParameters.put("ApartmentNumber", a);
         }
-        if (groupName != null) {
-            updateParameters.put("GroupName", groupName);
+        if (b != null) {
+            updateParameters.put("SSN", b);
+        }
+        if (c != null) {
+            updateParameters.put("MeetingID", c);
+        }
+        if (d != null) {
+            updateParameters.put("DecisionID", d);
+        }
+        if (e != null) {
+            updateParameters.put("Vote", e);
+        }
+        if (f != null) {
+            updateParameters.put("RoleID", f);
         }
 
         Map<String, Object> parameters = new HashMap<>();

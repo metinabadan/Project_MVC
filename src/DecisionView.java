@@ -38,12 +38,12 @@ public class DecisionView implements ViewInterface{
                 String isRequireFullVoting = resultSet.getString("IsRequireFullVoting");
 
                 // Display values
-                System.out.print(apartmentNumber + "\t");
-                System.out.print(meetingID + "\t");
-                System.out.print(decisionID + "\t");
-                System.out.println(description + "\t");
-                System.out.println(isApproved + "\t");
-                System.out.println(isRequireFullVoting);
+                System.out.print("Apartment Number: " + apartmentNumber + "\t");
+                System.out.print("MeetingID: " + meetingID + "\t");
+                System.out.print("DecisionID: " + decisionID + "\t\t");
+                System.out.print("Description: " + description + "\t\t");
+                System.out.print("isApproved: " + isApproved + "\t\t");
+                System.out.println("isRequireFullVoting: " + isRequireFullVoting);
             }
             resultSet.close();
         }
@@ -71,8 +71,8 @@ public class DecisionView implements ViewInterface{
 
     Map<String, Object> getWhereParameters() throws Exception {
         //BURDA DATE TYPECAST VAR SIKINTI CIKABILIR        
-        Integer apartmentNumber = getInteger("Apartment Number : ", true);
-        Integer meetingID = getInteger("MeetingID ID : ", true);
+        Integer apartmentNumber = getInteger("ApartmentNumber : ", true);
+        Integer meetingID = getInteger("MeetingID : ", true);
         Integer decisionID = getInteger("DecisionID : ", true);
         String description = getString("Description : ", true);
         String isApproved = getString("IsApproved  : ", true);
@@ -110,21 +110,24 @@ public class DecisionView implements ViewInterface{
 
     ViewData insertGUI(ModelData modelData) throws Exception {
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fieldNames", "Name, GroupName");
+        parameters.put("fieldNames", "ApartmentNumber, MeetingID, Description, IsApproved, IsRequireFullVoting");
 
         List<Object> rows = new ArrayList<>();
-
-        String name, groupName;
+        Integer a,b;
+        String c,bb,cc;
         do {
             System.out.println("Fields to insert:");
-            name = getString("Name : ", true);
-            groupName = getString("Group Name : ", true);
+            a = getInteger("ApartmentNumber : ", true);
+            b = getInteger("MeetingID : ", true);
+            c = getString("Description : ", true);
+            bb = getString("IsApproved : ", true);
+            cc = getString("IsRequireFullVoting : ", true);
             System.out.println();
 
-            if (name != null && groupName != null) {
-                rows.add(new Department(name, groupName));
+            if (a != null && b != null && c != null && bb != null && cc != null) {
+                rows.add(new Decision(a, b, c, bb, cc));
             }
-        } while (name != null && groupName != null);
+        } while (a != null && b != null && c != null && bb != null && cc != null);
 
         parameters.put("rows", rows);
 
@@ -133,16 +136,28 @@ public class DecisionView implements ViewInterface{
 
     ViewData updateGUI(ModelData modelData) throws Exception {
         System.out.println("Fields to update:");
-        String name = getString("Name : ", true);
-        String groupName = getString("Group Name : ", true);
+        String a = getString("ApartmentNumber : ", true);
+        String b = getString("MeetingID : ", true);
+        String c = getString("Description : ", true);
+        String d = getString("IsApproved : ", true);
+        String e = getString("IsRequireFullVoting : ", true);
         System.out.println();
 
         Map<String, Object> updateParameters = new HashMap<>();
-        if (name != null) {
-            updateParameters.put("Name", name);
+        if (a != null) {
+            updateParameters.put("ApartmentNumber", a);
         }
-        if (groupName != null) {
-            updateParameters.put("GroupName", groupName);
+        if (b != null) {
+            updateParameters.put("MeetingID", b);
+        }
+        if (c != null) {
+            updateParameters.put("Description", c);
+        }
+        if (d != null) {
+            updateParameters.put("IsApproved", d);
+        }
+        if (e != null) {
+            updateParameters.put("IsRequireFullVoting", e);
         }
 
         Map<String, Object> parameters = new HashMap<>();

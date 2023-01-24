@@ -13,7 +13,7 @@ public class DecisionModel implements ModelInterface{
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT ");
         sql.append("ApartmentNumber, MeetingID, DecisionID, Description, IsApproved, IsRequireFullVoting ");
-        sql.append(" FROM Subscription ");
+        sql.append(" FROM Decision ");
 
         List<Map.Entry<String, Object>> whereParameterList = DatabaseUtilities.createWhereParameterList(whereParameters);
         sql.append(DatabaseUtilities.prepareWhereStatement(whereParameterList));

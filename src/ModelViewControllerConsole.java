@@ -10,7 +10,6 @@ public class ModelViewControllerConsole
 		router.put("MainMenu", new Controller(new MainMenuView(), new NopModel()));
 		router.put("Apartment", new Controller(new ApartmentView(), new ApartmentModel()));
 		router.put("Decision", new Controller(new DecisionView(), new DecisionModel()));
-		router.put("Department", new Controller(new DepartmentView(), new DepartmentModel()));
 		router.put("Due", new Controller(new DueView(), new DueModel()));
 		router.put("Expense", new Controller(new ExpenseView(), new ExpenseModel()));
 		router.put("Meeting", new Controller(new MeetingView(), new MeetingModel()));
@@ -45,7 +44,7 @@ public class ModelViewControllerConsole
 	public static void connectToDatabase() 
 	{
 		DatabaseUtilities.host = "DESKTOP-ET69OSR";
-		DatabaseUtilities.databaseName = "LatestProject";
+		DatabaseUtilities.databaseName = "LatestProject1";
 		
 		try 
 		{

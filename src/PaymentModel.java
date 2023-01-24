@@ -12,8 +12,8 @@ public class PaymentModel implements ModelInterface{
         // construct SQL statement
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT ");
-        sql.append("ApartmentNumber, SSN, RoleID, Amount, Date, Type, Description, PaymentID, Receipt ");
-        sql.append(" FROM Subscription ");
+        sql.append("	PaymentID, ApartmentNumber, SSN, RoleID, Amount, Date, Type, Description, Receipt ");
+        sql.append(" FROM Payment ");
 
         List<Map.Entry<String, Object>> whereParameterList = DatabaseUtilities.createWhereParameterList(whereParameters);
         sql.append(DatabaseUtilities.prepareWhereStatement(whereParameterList));

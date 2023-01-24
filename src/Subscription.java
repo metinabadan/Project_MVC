@@ -5,12 +5,12 @@ public class Subscription {
 
     private int apartmentNumber;
     private int subscriptionID;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private int amount;
     private int typeID;
 
-    public Subscription(int ApartmentNumber, Date StartDate, Date EndDate, int Amount, int TypeID) {
+    public Subscription(int ApartmentNumber, String StartDate, String EndDate, int Amount, int TypeID) {
         this.apartmentNumber = ApartmentNumber;
         this.startDate = StartDate;
         this.endDate = EndDate;
@@ -35,19 +35,19 @@ public class Subscription {
         this.apartmentNumber = apartmentNumber;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
