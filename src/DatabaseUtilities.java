@@ -16,6 +16,7 @@ public class DatabaseUtilities
 							+ "integratedSecurity=true";
 
 			connection = DriverManager.getConnection(conUrl);
+			connection.setAutoCommit(false);
 		}
 		
 		return connection;
